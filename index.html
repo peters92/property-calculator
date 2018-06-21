@@ -19,19 +19,17 @@
     Discount (%):<br>
     <input type="number" name="discount" min="0" max="100"><br>
     Discounted price:<br>
-    <output name="disc_price"></output><br>
+    <output name="disc_price" class="calculated"></output><br>
   </fieldset>
-  <br>
   <fieldset>
     <legend>Financing</legend>
     Loan to Value (%):<br>
     <input type="number" name="loan_to_value" min="0" max="100"><br>
     Loan Amount:<br>
-    <output name="loan_amount"></output><br>
+    <output name="loan_amount" class="calculated"></output><br>
     Interest Rate (%):<br>
     <input type="number" name="interest_rate" min="0" max="100"><br>
   </fieldset>
-  <br>
   <fieldset>
     <legend>Initial Costs</legend>
     Refurbishment:<br>
@@ -41,8 +39,6 @@
     Loan Fees:<br>
     <input type="number" name="loan_fees" min="0"><br>
   </fieldset>
-  <br>
-
   <fieldset>
     <legend>Recurring Costs (Monthly)</legend>
     Vacancy (%):<br>
@@ -58,32 +54,26 @@
     Capital Expenditures:<br>
     <input type="number" name="capital_expenditures" min="0"><br>
     Loan Interest:<br>
-    <output name="loan_interest"></output><br>
+    <output name="loan_interest" class="calculated"></output><br>
   </fieldset>
-  <br>
-
   <fieldset>
     <legend>Income</legend>
     Gross Rent:<br>
     <input type="number" name="gross_rent" min="0"><br>
   </fieldset>
-  <br>
-
   <fieldset>
     <legend>Cashflow</legend>
     Monthly:<br>
-    <output name="cashflow_monthly"></output><br>
+    <output name="cashflow_monthly" class="calculated"></output><br>
     Yearly:<br>
-    <output name="cashflow_yearly"></output><br>
+    <output name="cashflow_yearly" class="calculated"></output><br>
   </fieldset>
-  <br>
-
   <fieldset>
     <legend>Returns</legend>
     Total Investment:<br>
-    <output name="total_investment"></output><br>
+    <output name="total_investment" class="calculated"></output><br>
     Return on Investment (%):<br>
-    <output name="return_on_investment"></output><br>
+    <output name="return_on_investment" class="calculated"></output><br>
   </fieldset>
 	</form>
 
@@ -150,7 +140,35 @@
                               Number(purchase_fees.value) + Number(loan_fees.value);
     return_on_investment.value = (100 * cashflow_yearly.value / total_investment.value).toFixed(2) + "%"
 
+    // Update background color for cashflow and ROI depending on sign
+    if (cashflow_monthly.value>0)
+    {
+      cashflow_monthly.classList.add("positive")
+      cashflow_monthly.classList.remove("negative")
+      cashflow_yearly.classList.add("positive")
+      cashflow_yearly.classList.remove("negative")
 
+    }
+    else
+    {
+      cashflow_monthly.classList.remove("positive")
+      cashflow_monthly.classList.add("negative")
+      cashflow_yearly.classList.remove("positive")
+      cashflow_yearly.classList.add("negative")
+
+    }
+    if (parseInt(return_on_investment.value)>0)
+    {
+      console.log("roi positive")
+      return_on_investment.classList.add("positive")
+      return_on_investment.classList.remove("negative")
+
+    }
+    else
+    {
+      return_on_investment.classList.remove("positive")
+      return_on_investment.classList.add("negative")
+    }
   }
   </script>
 	</div>

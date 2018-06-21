@@ -1,7 +1,38 @@
+/* General page style */
 .content{
-	max-width: 300px;
+	max-width: 600px;
 	margin: auto;
 }
-.header{
-	fill: black;
+/* Fonts */
+.content{
+	font-family: Verdana, sans-serif;
+	font-size: 10.5pt;
+}
+legend{
+	font-weight: bold;
+}
+/* Form structure and sizes */
+fieldset{
+	float: left;
+	width: 40%;
+	margin: 10;
+	padding: 15;
+	box-sizing: border-box;
+}
+input{
+	width: 120px;
+	padding: 2.5px 5px;
+  margin: 2.5px 0;
+}
+input:focus{
+	background-color: lightblue;
+}
+output.calculated{
+	background-color: #F3C73C;
+}
+output.positive{
+	background-color: #3CBC8D;
+}
+output.negative{
+	background-color: #BC533C;
 }

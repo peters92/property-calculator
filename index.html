@@ -10,70 +10,81 @@
 <body>
 	<div class="content">
 
-  <form id="form1" oninput="update_form()">
+  <form id="form1" oninput="update_form()" autocomplete="on">
 
-  Purchase:<br>
-	  Property Asking Price:<br>
-	  <input type="number" name="ask_price" min="0"><br>
-	  Discount (%):<br>
-	  <input type="number" name="discount" min="0" max="100"><br>
+  <fieldset>
+    <legend>Purchase</legend>
+    Property Asking Price:<br>
+    <input type="number" name="ask_price" min="0" autofocus><br>
+    Discount (%):<br>
+    <input type="number" name="discount" min="0" max="100"><br>
     Discounted price:<br>
     <output name="disc_price"></output><br>
+  </fieldset>
   <br>
-
-  Financing:<br>
+  <fieldset>
+    <legend>Financing</legend>
     Loan to Value (%):<br>
-	  <input type="number" name="loan_to_value" min="0" max="100"><br>
-	  Loan Amount:<br>
+    <input type="number" name="loan_to_value" min="0" max="100"><br>
+    Loan Amount:<br>
     <output name="loan_amount"></output><br>
     Interest Rate (%):<br>
     <input type="number" name="interest_rate" min="0" max="100"><br>
+  </fieldset>
   <br>
-
-  Initial Costs:<br>
+  <fieldset>
+    <legend>Initial Costs</legend>
     Refurbishment:<br>
-	  <input type="number" name="refurbishment" min="0"><br>
-	  Purchase Fees:<br>
+    <input type="number" name="refurbishment" min="0"><br>
+    Purchase Fees:<br>
     <input type="number" name="purchase_fees" min="0"><br>
     Loan Fees:<br>
     <input type="number" name="loan_fees" min="0"><br>
+  </fieldset>
   <br>
 
-  Recurring Costs (Monthly):<br>
+  <fieldset>
+    <legend>Recurring Costs (Monthly)</legend>
     Vacancy (%):<br>
     <input type="number" name="vacancy" min="0" max="100"><br>
     Maintenance (%):<br>
-	  <input type="number" name="maintenance" min="0" max="100"><br>
+    <input type="number" name="maintenance" min="0" max="100"><br>
     Management (%):<br>
-	  <input type="number" name="management" min="0" max="100"><br>
+    <input type="number" name="management" min="0" max="100"><br>
     Propety Tax:<br>
-	  <input type="number" name="property_tax" min="0"><br>
+    <input type="number" name="property_tax" min="0"><br>
     Utilities:<br>
-	  <input type="number" name="utilities" min="0"><br>
+    <input type="number" name="utilities" min="0"><br>
     Capital Expenditures:<br>
-	  <input type="number" name="capital_expenditures" min="0"><br>
+    <input type="number" name="capital_expenditures" min="0"><br>
     Loan Interest:<br>
     <output name="loan_interest"></output><br>
+  </fieldset>
   <br>
 
-  Income:<br>
+  <fieldset>
+    <legend>Income</legend>
     Gross Rent:<br>
-	  <input type="number" name="gross_rent" min="0"><br>
+    <input type="number" name="gross_rent" min="0"><br>
+  </fieldset>
   <br>
 
-  Cashflow:<br>
+  <fieldset>
+    <legend>Cashflow</legend>
     Monthly:<br>
     <output name="cashflow_monthly"></output><br>
     Yearly:<br>
     <output name="cashflow_yearly"></output><br>
+  </fieldset>
   <br>
 
-  Returns:<br>
+  <fieldset>
+    <legend>Returns</legend>
     Total Investment:<br>
     <output name="total_investment"></output><br>
     Return on Investment (%):<br>
     <output name="return_on_investment"></output><br>
-  <br>
+  </fieldset>
 	</form>
 
   <script type="text/javascript">

@@ -9,14 +9,138 @@
 
 <body>
 	<div class="content">
-	<form>
+
+  <form id="form1" oninput="update_form()">
+
+  Purchase:<br>
 	  Property Asking Price:<br>
 	  <input type="number" name="ask_price" min="0"><br>
-	  Discount:<br>
-	  <input type="number" name="discount" min="0" max="100">
-	</form>
-  <script type="text/javascript">
+	  Discount (%):<br>
+	  <input type="number" name="discount" min="0" max="100"><br>
+    Discounted price:<br>
+    <output name="disc_price"></output><br>
+  <br>
 
+  Financing:<br>
+    Loan to Value (%):<br>
+	  <input type="number" name="loan_to_value" min="0" max="100"><br>
+	  Loan Amount:<br>
+    <output name="loan_amount"></output><br>
+    Interest Rate (%):<br>
+    <input type="number" name="interest_rate" min="0" max="100"><br>
+  <br>
+
+  Initial Costs:<br>
+    Refurbishment:<br>
+	  <input type="number" name="refurbishment" min="0"><br>
+	  Purchase Fees:<br>
+    <input type="number" name="purchase_fees" min="0"><br>
+    Loan Fees:<br>
+    <input type="number" name="loan_fees" min="0"><br>
+  <br>
+
+  Recurring Costs (Monthly):<br>
+    Vacancy (%):<br>
+    <input type="number" name="vacancy" min="0" max="100"><br>
+    Maintenance (%):<br>
+	  <input type="number" name="maintenance" min="0" max="100"><br>
+    Management (%):<br>
+	  <input type="number" name="management" min="0" max="100"><br>
+    Propety Tax:<br>
+	  <input type="number" name="property_tax" min="0"><br>
+    Utilities:<br>
+	  <input type="number" name="utilities" min="0"><br>
+    Capital Expenditures:<br>
+	  <input type="number" name="capital_expenditures" min="0"><br>
+    Loan Interest:<br>
+    <output name="loan_interest"></output><br>
+  <br>
+
+  Income:<br>
+    Gross Rent:<br>
+	  <input type="number" name="gross_rent" min="0"><br>
+  <br>
+
+  Cashflow:<br>
+    Monthly:<br>
+    <output name="cashflow_monthly"></output><br>
+    Yearly:<br>
+    <output name="cashflow_yearly"></output><br>
+  <br>
+
+  Returns:<br>
+    Total Investment:<br>
+    <output name="total_investment"></output><br>
+    Return on Investment (%):<br>
+    <output name="return_on_investment"></output><br>
+  <br>
+	</form>
+
+  <script type="text/javascript">
+  var form
+
+  function update_form()
+  {
+    // Get the form all together
+    form = document.getElementById('form1')
+
+    // Get elements from "purchase" section
+    ask_price = form.ask_price
+    discount = form.discount
+    disc_price = form.disc_price
+
+    // Update form with the discounted value
+    disc_price.value = (ask_price.value * (1 - discount.value / 100)).toFixed(2)
+
+    // Get elements from "financing" section
+    loan_to_value = form.loan_to_value
+    loan_amount = form.loan_amount
+    interest_rate = form.interest_rate
+
+    // Update form with the loan amount
+    loan_amount.value = (disc_price.value * (loan_to_value.value / 100)).toFixed(2)
+
+    // Get elements from "costs" section
+    refurbishment = form.refurbishment
+    purchase_fees = form.purchase_fees
+    loan_fees = form.loan_fees
+    vacancy = form.vacancy
+    maintenance = form.maintenance
+    management = form.management
+    property_tax = form.property_tax
+    utilities = form.utilities
+    capital_expenditures = form.capital_expenditures
+    loan_interest = form.loan_interest
+
+    // Update form with the loan interest payment
+    loan_interest.value = (loan_amount.value * (interest_rate.value / 100)).toFixed(2)
+
+    // Get elements from 'income' 'cashflow' and 'returns' sections
+    gross_rent = form.gross_rent
+    cashflow_monthly = form.cashflow_monthly
+    cashflow_yearly = form.cashflow_yearly
+    total_investment = form.total_investment
+    return_on_investment = form.return_on_investment
+
+    // Calculating monthly costs
+    maintenance_cost = gross_rent.value * (maintenance.value / 100)
+    management_cost = gross_rent.value * (management.value / 100)
+    vacancy_cost = gross_rent.value * (vacancy.value / 100)
+
+    monthly_cost = maintenance_cost + management_cost + vacancy_cost + Number(property_tax.value) +
+                   Number(utilities.value) + Number(capital_expenditures.value) + Number(loan_interest.value);
+
+    // Update form with cashflow values
+    cashflow_monthly.value = (gross_rent.value - monthly_cost).toFixed(2)
+    cashflow_yearly.value = (cashflow_monthly.value * 12).toFixed(2)
+
+    // Update form with return values
+    total_investment.value =  disc_price.value - loan_amount.value + Number(refurbishment.value) +
+                              Number(purchase_fees.value) + Number(loan_fees.value);
+    return_on_investment.value = (100 * cashflow_yearly.value / total_investment.value).toFixed(2) + "%"
+
+
+  }
   </script>
 	</div>
 </body>
